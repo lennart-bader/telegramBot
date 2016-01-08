@@ -1,0 +1,12 @@
+secret.php
+
+/log/
+
+/plugins/youtube/downloads/
+
+/api/cache/*
+
+/api/
+
+/plugins/wolfram/WolframAlphaEngine.php
+/plugins/wolfram/include/
