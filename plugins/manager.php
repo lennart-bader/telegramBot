@@ -1,17 +1,12 @@
-<?php
-    function __autoload($class) {
-        $class = strtolower($class);
-        require_once "plugins/" . $class . "/plugin.php";
-        
-        file_put_contents("log/manager.log", "autoloading ".$class .  " : " . file_get_contents("plugins/" . $class . "/plugin.php"));
-    }
-    
+<?php    
 class PluginManager {
     private $pluginAliases = array();
     private $plugins = array();
     private $receiveAliases = array();
     private $helps = array();
 
+    private $aliases = array();
+    private $receivers = array();
 
     public function collectAliases() {
         foreach (new DirectoryIterator('plugins') as $fileInfo) {
@@ -40,35 +35,56 @@ class PluginManager {
     public function getPlugin($cmd) {
         $cmd = explode("_", $cmd);
         $cmd = $cmd[0];
-        if (isset($this->pluginAliases[$cmd])) {
-            return $this->pluginAliases[$cmd];
-        } else {
-            return false;
+        if (isset($this->aliases[$cmd])) {
+            $candidate = $this->aliases[$cmd];
+            global $message;
+            $type = $message->type;
+            $types = $candidate["types"];
+            if ($types === true || in_array($type, $types)) {
+                return $candidate["to"];
+            }
         }
+        return false;
     }
 
     public function getPluginList() {
         return $this->plugins;
     }
 
-    public function sendReceived($data, $message) {
-        foreach ($this->receiveAliases as $pluginName) {
-            $plugin = new $pluginName;
-            $plugin->receive($data, $message);
-        }
-    }
-
-    public function registerAliases($aliases) {
-        $this->pluginAliases = $this->pluginAliases + $aliases;
-        foreach ($aliases as $alias => $plugin) {
-            if (!in_array($plugin, $this->plugins)) {
-                $this->plugins[] = $plugin;
+    public function sendReceived($message) {
+        foreach ($this->receivers as $receiver) {
+            $pluginName = $receiver["plugin"];
+            $types = $receiver["types"];
+            if ($types === true || in_array($message->type, $types)) {
+                $plugin = new $pluginName;
+                $plugin->receive($message);
             }
         }
     }
 
-    public function registerReceiver($receiver) {
-        $this->receiveAliases[] = $receiver;
+    // @DEPRECATED
+    public function registerAliases($aliases) {
+        foreach ($aliases as $from => $to) {
+            $this->registerAlias($from, $to);
+        }
+    }
+
+    public function registerAlias($from, $to, $types = true) {
+        if ($types !== true && !is_array($types)) {
+            $types = array($types);
+        }
+        $this->aliases[$from] = array("to" => $to, "types" => $types);
+
+        if (!in_array($to, $this->plugins)) {
+            $this->plugins[] = $to;
+        }
+    }
+
+    public function registerReceiver($receiver, $types = true) {
+        if ($types !== true && !is_array($types)) {
+            $types = array($types);
+        }
+        $this->receivers[] = array("plugin" => $receiver, "types" => $types);
     }
 
     public function getHelp($plugin) {

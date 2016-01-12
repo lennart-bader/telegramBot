@@ -2,10 +2,11 @@
     global $t;
     $t->setPlugin("youtube");
 
-    $aliases = array("youtube" => "youtube", "yt" => "youtube", "dlv" => "youtube");
     global $pluginManager;
-    $pluginManager->registerAliases($aliases);
-    $pluginManager->registerReceiver("youtube");
+    $pluginManager->registerAlias("youtube", "youtube", "text");
+    $pluginManager->registerAlias("yt", "youtube", "text");
+    $pluginManager->registerAlias("dlv", "youtube", "text");
+    $pluginManager->registerReceiver("youtube", "text");
     $helps = $t->g("help");
     $pluginManager->addHelp("youtube", $helps);
 ?>

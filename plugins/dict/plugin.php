@@ -1,15 +1,13 @@
 <?php
 class Dict {
-    public function execute($data, $message) {
+    public function execute($message) {
         global $pluginManager; 
         global $api;
-        global $chatid;
-        global $sender;
         global $t;
         $t->setPlugin("dict");
 
-        $cmd = explode("_", $data[0]);
-        array_shift($data);
+        $cmd = explode("_", $message->getCommand());
+        $data = $message->getData();
         $search = implode(" ", $data);
         $from = $cmd[1];
         $to = $cmd[2];

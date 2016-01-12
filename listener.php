@@ -5,7 +5,6 @@
     global $message;
     global $msg;
     global $api;
-    global $chatid;
     global $sender;
     global $db;
     global $t;
@@ -23,34 +22,25 @@
         // TODO
     } else {
         // Message received
-        $message = Api::getUpdate();
-        $chatid = Api::getChat($message);
+        $update = new Update($api->getWebhookUpdates());
+        if ($update->type == "inlineQuery") {
+
+        } else {
+            $message = $update->message;
         
-        $sender = $message["message"]["from"];
+            $pluginManager->sendReceived($message);
 
-        $text = $message["message"]["text"];    
-    
-        $isCmd = false;
-        if (strpos($text, "/") == 0 && strpos($text, "/") !== false) {
-            $text = substr($text, 1);
-            $isCmd = true;
-        }
-    	$text = str_replace("@kryptur_bot", "", $text);
-    
-        $data = explode(" ", $text);
-    
-        $pluginManager->sendReceived($data, $message);
-
-        $cmd = strtolower($data[0]);
-        $cmd = $pluginManager->getPlugin($cmd);
-        if (!$cmd) {
-            exit;
-        }
-
-    
-        if ($isCmd) {
-            $class = new $cmd;
-            $class->execute($data, $message);
+        
+            if ($message->is_command) {
+                $cmd = $message->getCommand();
+                if (!$cmd) {
+                    exit;
+                }
+                $cmd = $pluginManager->getPlugin($cmd);
+                
+                $class = new $cmd;
+                $class->execute($message);
+            }
         }
     }
     

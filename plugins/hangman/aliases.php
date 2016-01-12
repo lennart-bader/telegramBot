@@ -7,7 +7,7 @@
     );
     $helps = $t->g("help");
     global $pluginManager;
-    $pluginManager->registerAliases($aliases);
     $pluginManager->addHelp("hangman", $helps);
-    $pluginManager->registerReceiver("hangman");
+    $pluginManager->registerReceiver("hangman", "text");
+    $pluginManager->registerAlias("hangman", "hangman", "text");
 ?>

@@ -1,11 +1,11 @@
 <?php
 class Help {
-    public function execute($data, $message) {
+    public function execute($message) {
         global $pluginManager;
         global $t;
         $t->setPlugin("help");
 
-        $cmd = implode("_", $data);
+        $cmd = $message->getCommand();
         $data = explode("_", $cmd);
 
         array_shift($data);
@@ -38,7 +38,7 @@ class Help {
         
         $reply = implode("\n", $res); 
         
-        Api::reply($message, $reply, true);
+        Api::reply($message->chat, $reply, true);
     }
 }
 ?>

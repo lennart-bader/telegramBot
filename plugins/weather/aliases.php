@@ -2,9 +2,11 @@
     global $t;
     $t->setPlugin("weather");
 
-    $aliases = array("wetter" => "weather", "weather" => "weather", "weatherf" => "weather", "wettera" => "weather");
     global $pluginManager;
-    $pluginManager->registerAliases($aliases);
+    $pluginManager->registerAlias("wetter", "weather", "text");
+    $pluginManager->registerAlias("wettera", "weather", "text");
+    $pluginManager->registerAlias("weather", "weather", "text");
+    $pluginManager->registerAlias("weatherf", "weather", "text");
     $helps = $t->g("help");
     $pluginManager->addHelp("weather", $helps);
 ?>

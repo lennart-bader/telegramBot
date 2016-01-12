@@ -1,19 +1,19 @@
 <?php
 class Youtube {
-    public function execute($data, $message) {
+    public function execute($message) {
         // This does nothing for now
-        switch ($data[0]) {
+        switch ($message->getCommand()) {
         case "dlv":
             global $api;
             global $chatid;
-            $api->sendVideo($chatid, $data[1]);
+            $api->sendVideo($message->chat->id, $data[0]);
             break;
         }
     }
 
-    public function receive($data, $message) {
+    public function receive($message) {
         // Check if message is Youtube-URL
-        $text = implode(" ", $data);
+        $text = $message->text;
         if (filter_var($text, FILTER_VALIDATE_URL)) {
             // Expand shortened URLs
             $url = $this->expand_url($text);
@@ -25,12 +25,12 @@ class Youtube {
                     $id = $this->urlToId($url);
                     global $api;
                     global $chatid;
-                    $api->sendVideo($chatid, $file);
+                    $api->sendVideo($message->chat->id, $file);
                 }
             } elseif (substr($url, -4) == ".mp4") { // DL and send mp4 videos
-       		global $api;
-	        global $chatid;
-       		$api->sendVideo($chatid, $text);
+           		global $api;
+    	        global $chatid;
+           		$api->sendVideo($message->chat->id, $text);
        	    }
         }
     }

@@ -6,11 +6,11 @@
         
         }
     
-        public function execute($data, $message) {
-            $cmd = strtolower($data[0]);
-			
-			if (sizeof($data) >= 2) {
-                unset($data[0]);
+        public function execute($message) {
+            $cmd = strtolower($message->getCommand());
+	        $data = $message->getData();   
+
+			if (sizeof($data) >= 1) {
                 $location = implode(" ", $data);
             } else {
                 $location = "Duisburg";
@@ -24,7 +24,7 @@
 			
             $wp = new WeatherParser($location);
             
-            Api::reply($message, $wp->getWeather($forecast), true);
+            Api::reply($message->chat, $wp->getWeather($forecast), true);
         }
     }
 ?>

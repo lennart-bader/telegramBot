@@ -12,16 +12,15 @@ class Hangman {
     }
 
     // Called when message received
-    public function receive($data, $message) {
+    public function receive($message) {
         global $api;
-        global $chatid;
 
         global $t;
         $t->setPlugin("hangman");
 
-        $text = $data[0];
+        $text = $message->exploded[0];
         if (strlen($text) == 1) {
-            $game = $this->loadRunningGame($chatid);
+            $game = $this->loadRunningGame($message->chat->id);
             if ($game != false && !$game["paused"]) {
                 // Check if send string is a letter
                 $letter = strtoupper($text);
@@ -63,27 +62,24 @@ class Hangman {
         }
     }
 
-    public function execute($data, $message) {
-        global $pluginManager; 
+    public function execute($message) {
         global $api;
-        global $chatid;
-        global $sender;
         global $t;
         $t->setPlugin("hangman");
 
-        $cmd = $data[0];
+        $cmd = $message->getCommand();
         $cmd = explode("_", $cmd);
 
         $reply = "";
 
         $senderid = $sender["id"];
 
-        $game = $this->loadRunningGame($chatid);
+        $game = $this->loadRunningGame($message->chat->id);
 
         switch ($cmd[1]) {
             case "start":
                 if ($game == false) {
-                    $game = $this->newGame($chatid, $senderid);
+                    $game = $this->newGame($message->chat->id, $message->from->id);
                     if ($game == false) {
                         $reply = $t->g("error_creating");
                     } else {
@@ -132,7 +128,7 @@ class Hangman {
                  break;
         }
 
-        $api->sendMessage($chatid, $reply, "Markdown", true);
+        $api->sendMessage($message->chat->id, $reply, "Markdown", true);
     }
 
 

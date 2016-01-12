@@ -1,7 +1,6 @@
 <?php
-    $aliases = array("news" => "news");
     global $pluginManager;
-    $pluginManager->registerAliases($aliases);
+    $pluginManager->registerAlias("news", "news", "text");
     $helps = array(
         "/news - Gives you the latest news from SPON",
         "/news `SEARCH` - Gives you the latest news with keywoard `SEARCH`"

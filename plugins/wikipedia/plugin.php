@@ -6,12 +6,13 @@
         
         }
     
-        public function execute($data, $message) {
+        public function execute($message) {
 			$markdown = true;
             global $t;
             $t->setPlugin("wikipedia");
 			
-            $cmd = strtolower($data[0]);
+            $cmd = strtolower($message->getCommand());
+            $data = $message->getData();
 			
 			$cmd_params = explode("_", $cmd);
 			if (sizeof($cmd_params) == 2) {
@@ -21,14 +22,13 @@
 
 			switch ($cmd) {
 				case "wiki":
-					if (sizeof($data) >= 2) {
-						unset($data[0]);
+					if (sizeof($data) >= 1) {
 						$title = implode(" ", $data);
 					} else {
 						$help = $t->g("default");
 						$help = implode("\n", $help);
 					
-						Api::reply($message, $help, true);
+						Api::reply($message->chat, $help, true);
 						return;
 					}
             
@@ -43,7 +43,7 @@
 					break;
 			}
 			
-            Api::reply($message, $text, $markdown);
+            Api::reply($message->chat, $text, $markdown);
         }
     }
 ?>
