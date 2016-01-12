@@ -26,5 +26,14 @@
             
             Api::reply($message->chat, $wp->getWeather($forecast), true);
         }
+
+        public function receive($message) {
+            if ($message->type == "location") {
+                $forecast = false;
+                $coords = array("lon" => $message->location->longitude, "lat" => $message->location->latitude);
+                $wp = new WeatherParser($coords);
+                Api::reply($message->chat, $wp->getWeather($forecast), true);
+            }
+        }
     }
 ?>

@@ -7,6 +7,9 @@
     $pluginManager->registerAlias("wettera", "weather", "text");
     $pluginManager->registerAlias("weather", "weather", "text");
     $pluginManager->registerAlias("weatherf", "weather", "text");
+
+    $pluginManager->registerReceiver("weather", "location");
+
     $helps = $t->g("help");
     $pluginManager->addHelp("weather", $helps);
 ?>

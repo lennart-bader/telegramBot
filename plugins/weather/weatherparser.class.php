@@ -40,9 +40,7 @@ class WeatherParser extends OpenWeather{
     	
         if ($this->currentWeather != FALSE) {
             $r = array();
-            
-            file_put_contents("log/parser.log", json_encode($this->currentWeather));
-            
+                        
             $r[] = "*" .sprintf($t->g("current_weather"), $this->getLocation()) . "*:";
             $r[] = sprintf($t->g("current_weather_l1"), 
             	$this->currentWeather["weather"][0]["description"],
