@@ -39,7 +39,7 @@
 					
 				case "wikip":
 					$wp = new WikipediaParser();
-					$text = $wp->page($param);
+					$text = $wp->page($param, strtolower(LANGUAGE));
 					break;
 			}
 			
