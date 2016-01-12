@@ -1,3 +1,0 @@
-[submodule "sub_api"]
-	path = sub_api
-	url = https://github.com/akalongman/php-telegram-bot
