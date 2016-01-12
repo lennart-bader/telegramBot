@@ -4,10 +4,11 @@
 
     $aliases = array("hello" => "hello");
     global $pluginManager;
-    $pluginManager->registerAliases($aliases);
-    $pluginManager->registerReceiver("hello");
     $helps = array(
         $t->g("help")
     );
+    
     $pluginManager->addHelp("hello", $helps);
+    $pluginManager->registerAlias("hello", "hello", "text");
+    $pluginManager->registerReceiver("hello", "text");
 ?>

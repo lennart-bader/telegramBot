@@ -1,15 +1,16 @@
 <?php
 class Netutils {
-    public function execute($data, $message) {
+    public function execute($message) {
         global $pluginManager;
         global $t;
         $t->setPlugin("netutils");
         $reply = "";
+        $data = $message->getData();
         
         $shell = new Shell();
         $execute = true;
 
-        $call = $data[0];
+        $call = $message->getCommand();
         array_shift($data);
 
         switch ($call) {
@@ -45,8 +46,7 @@ class Netutils {
         }
         // Api::reply($message, $reply, true);
         global $api;
-        global $chatid;
-        $api->sendMessage($chatid, $reply, "Markdown", true);
+        $api->sendMessage($message->chat->id, $reply, "Markdown", true);
     }
 }
 ?>

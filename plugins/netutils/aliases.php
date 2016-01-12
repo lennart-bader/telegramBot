@@ -1,15 +1,13 @@
 <?php
     global $t;
     $t->setPlugin("netutils");
-    $aliases = array(
-        "netutils" => "netutils", 
-        "nslookup" => "netutils",
-        "whois" => "netutils", 
-        "dig" => "netutils",
-        "nmap" => "netutils"
-    );
+    
     $helps = $t->g("help");
     global $pluginManager;
-    $pluginManager->registerAliases($aliases);
+    $pluginManager->registerAlias("netutils", "netutils", "text");
+    $pluginManager->registerAlias("nslookup", "netutils", "text");
+    $pluginManager->registerAlias("whois", "netutils", "text");
+    $pluginManager->registerAlias("dig", "netutils", "text");
+    $pluginManager->registerAlias("nmap", "netutils", "text");
     $pluginManager->addHelp("netutils", $helps);
 ?>

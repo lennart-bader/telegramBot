@@ -1,32 +1,26 @@
 <?php
 class Hello {
-    public function execute($data, $message) {
+    public function execute($message) {
         // This does nothing for now
     }
 
-    public function receive($data, $message) {
-        $this->greetings($data, $message);
+    public function receive($message) {
+        $this->greetings($message);
     }
 
-    private function greetings($data, $message) {
+    private function greetings($message) {
         global $t;
         $t->setPlugin("hello");
 
-        $text = implode(" ", $data);
+        $text = $message->text;
         // Load keywords from language file
         $keywords = $t->g("keywords");
 
         global $api;
-        global $chatid;
 
         $text = strtolower($text);
         foreach ($keywords as $keyword) {
-            $sender = $message["message"]["from"];
-            if ($sender["first_name"] == "") {
-                $name = $sender["username"];
-            } else {
-                $name = $sender["first_name"];
-            }
+            $name = $message->from->first_name;
             
             preg_match_all('/\b' . $keyword . '\b/', $text, $matches, PREG_OFFSET_CAPTURE);
 
@@ -35,7 +29,7 @@ class Hello {
                 switch ($keyword) {
                     // Moin / Hi
                     case $keywords[5]:
-                        $api->sendMessage($chatid, ucwords($keywords[5]) . " :)");
+                        $api->sendMessage($message->chat->id, ucwords($keywords[5]) . " :)");
                         break;
                     // Good night
                     case $keywords[4]:
@@ -43,11 +37,11 @@ class Hello {
                         if ($h >= 21 && $h < 7) {
                             $texts = $t->g("good_night");
                             $num = mt_rand(0, sizeof($texts) - 1);
-                            $api->sendMessage($chatid, sprintf($texts[$num], $name));
+                            $api->sendMessage($message->chat->id, sprintf($texts[$num], $name));
                         } else {
                             $texts = $t->g("no_night_time");
                             $num = mt_rand(0, sizeof($texts) - 1);
-                            $api->sendMessage($chatid, sprintf($texts[$num], $name));
+                            $api->sendMessage($message->chat->id, sprintf($texts[$num], $name));
                         }
                         break;
                     default:
@@ -61,11 +55,11 @@ class Hello {
                         } elseif ($h <= 18) {
                             $texts = $t->g("hello");
                         } elseif ($h <= 23) {
-                            $texts = $t->g("good_night");
+                            $texts = $t->g("good_evening");
                         }
                         $num = mt_rand(0, sizeof($texts) - 1);
                         $msg = sprintf($texts[$num], $name);
-                        $api->sendMessage($chatid, $msg);
+                        $api->sendMessage($message->chat->id, $msg);
                         break;
                 }
                 break;

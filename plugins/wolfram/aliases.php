@@ -1,7 +1,8 @@
 <?php
-    $aliases = array("c" => "wolfram", "calc" => "wolfram", "wolfram" => "wolfram");
     global $pluginManager;
-    $pluginManager->registerAliases($aliases);
+    $pluginManager->registerAlias("c", "wolfram", "text");
+    $pluginManager->registerAlias("calc", "wolfram", "text");
+    $pluginManager->registerAlias("wolfram", "wolfram", "text");
 
     $helps = array(
         "Use /c, /calc or /wolfram",
@@ -12,5 +13,7 @@
         "/c `QUERY` - Tries to evaluate your query",
         "   E.g.: `/c Android`"
     );
+
+
     $pluginManager->addHelp("wolfram", $helps);
 ?>

@@ -2,9 +2,11 @@
     global $t;
     $t->setPlugin("wikipedia");
 
-    $aliases = array("wiki" => "wikipedia", "info" => "wikipedia", "wikip" => "wikipedia", "wikipedia" => "wikipedia");
     global $pluginManager;
-    $pluginManager->registerAliases($aliases);
+    $pluginManager->registerAlias("wiki", "wikipedia", "text");
+    $pluginManager->registerAlias("info", "wikipedia", "text");
+    $pluginManager->registerAlias("wikip", "wikipedia", "text");
+    $pluginManager->registerAlias("wikipedia", "wikipedia", "text");
 
     $helps = $t->g("help");
     $pluginManager->addHelp("wikipedia", $helps);

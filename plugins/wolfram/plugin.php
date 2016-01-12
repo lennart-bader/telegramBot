@@ -8,10 +8,9 @@
         
         }
     
-        public function execute($data, $message) {
-            $cmd = strtolower($data[0]);
-			
-			unset($data[0]);
+        public function execute($message) {
+            $cmd = strtolower($message->getCommand());
+			$data = $message->getData();
 			
 			$params = array("format" => "plaintext");
 			
@@ -54,7 +53,7 @@
 				$sol[] = "Leider keine Ergebnisse :(";
 			}
 			            						
-            Api::reply($message, implode("\n", $sol), true);
+            Api::reply($message->chat, implode("\n", $sol), true);
         }
     }
 ?>
