@@ -29,12 +29,12 @@ class OpenWeather
 	 */
 	private function getWeather(){
 		$appid = weather_appid;
-		
+		$lang = strtolower(LANGUAGE);
 		//If location is set
 		if($this->location_){
-			$this->currentWeather = json_decode(file_get_contents("http://api.openweathermap.org/data/2.5/weather?q=" . urlencode($this->location_) . "&lang=de&units=metric&APPID=" . $appid), true);
+			$this->currentWeather = json_decode(file_get_contents("http://api.openweathermap.org/data/2.5/weather?q=" . urlencode($this->location_) . "&lang=".$lang."&units=metric&APPID=" . $appid), true);
 			
-			$this->futureWeather = json_decode(file_get_contents("http://api.openweathermap.org/data/2.5/forecast?q=" . urlencode($this->location_) . "&lang=de&units=metric&APPID=" . $appid), true);
+			$this->futureWeather = json_decode(file_get_contents("http://api.openweathermap.org/data/2.5/forecast?q=" . urlencode($this->location_) . "&lang=".$lang."&units=metric&APPID=" . $appid), true);
 		}
 	}
 		

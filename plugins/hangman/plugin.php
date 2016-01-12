@@ -15,13 +15,16 @@ class Hangman {
     public function receive($data, $message) {
         global $api;
         global $chatid;
+
+        global $t;
+        $t->setPlugin("hangman");
+
         $text = $data[0];
         if (strlen($text) == 1) {
             $game = $this->loadRunningGame($chatid);
             if ($game != false && !$game["paused"]) {
                 // Check if send string is a letter
                 $letter = strtoupper($text);
-                file_put_contents("log/hangman.log", "+++" . $letter . "+++\n");
                 if (ctype_upper($letter)) {
                     if (!in_array($letter, $game["letters"])) {
                         // letter not already found
@@ -45,10 +48,10 @@ class Hangman {
                     $reply = $this->draw($game);
 
                     if ($this->isSolved($game)) {
-                        $reply .= "\nYou won!";
+                        $reply .= $t->g("you_won");
                         $this->deleteGame($game);
                     } elseif ($game["fails"] == 9) {
-                        $reply .= "\nYou are dead :(\nSolution is: " . $game["word"];
+                        $reply .= sprintf($t->g("you_lost"), $game["word"]);
                         $this->deleteGame($game);
                     }
                     
@@ -65,6 +68,8 @@ class Hangman {
         global $api;
         global $chatid;
         global $sender;
+        global $t;
+        $t->setPlugin("hangman");
 
         $cmd = $data[0];
         $cmd = explode("_", $cmd);
@@ -80,50 +85,50 @@ class Hangman {
                 if ($game == false) {
                     $game = $this->newGame($chatid, $senderid);
                     if ($game == false) {
-                        $reply = "Error while creating game :(";
+                        $reply = $t->g("error_creating");
                     } else {
-                        $reply = "Game started! \n\n";
+                        $reply = $t->g("started");
                         $reply .= $this->draw($game);
                     }
                 } elseif ($game["paused"]) {
-                    $reply = "Game continued!\n\n";
+                    $reply = $t->g("continued");
                     $game["paused"] = false;
                     $reply .= $this->draw($game);
                     $this->saveGame($game);
                 } else {
-                    $reply = "There is already a running game\n\n";
+                    $reply = $t->g("already_running");
                     $reply .= $this->draw($game);
                 }
                 break;
             case "pause":
                 if ($game == false) {
-                    $reply = "There is no game to pause";
+                    $reply = $t->g("cannot_pause");
                 } else {
                     $game["paused"] = true;
                     $this->saveGame($game);
-                    $reply = "Game paused. Use /hangman\_start to continue.";
+                    $reply = $t->g("paused");
                 }
                 break;
             case "solve":
                 if ($game == false) {
-                    $reply = "No game to solve";
+                    $reply = $t->g("cannot_solve");
                     break;
                 } else {
-                    $reply = "Solution is: " . $game["word"]. "\n\n";
+                    $reply = sprintf($t->g("solve"), $game["word"]);
                 }
                 // Fall to Stop
             case "stop":
                 if ($game == false) {
-                    $reply = "No active game to stop";
+                    $reply = $t->g("cannot_stop");
                 } else {
                     if ($this->deleteGame($game))
-                        $reply .= "Game stopped";
+                        $reply .= $t->g("stopped");
                     else
-                        $reply .= "Game could not be stopped";
+                        $reply .= $t->g("error_stopping");
                 }
                 break;
             default:
-                 $reply = "Hangman! Type /help\_hangman for all commands";
+                 $reply = $t->g("default");
                  break;
         }
 

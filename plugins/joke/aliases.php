@@ -1,10 +1,10 @@
 <?php
+    global $t;
+    $t->setPlugin("joke");
+
     $aliases = array("joke" => "joke", "witz" => "joke");
     global $pluginManager;
     $pluginManager->registerAliases($aliases);
-    $helps = array(
-        "Use /joke or /witz",
-        "/joke - Sends you a random joke found on the internet"
-    );
+    $helps = $t->g("help");
     $pluginManager->addHelp("joke", $helps);
 ?>

@@ -12,7 +12,8 @@ class MemeApi {
                        
     
     public function __construct() {
-        
+        global $t;
+        $t->setPlugin("memes");
     }
     
     public function get($name, $top, $bottom) {
@@ -37,6 +38,7 @@ class MemeApi {
     }
     
     public function listMemes($count = 30) {
+        global $t;
         $res = json_decode(file_get_contents($this->list_url), true);
         if ($res["success"]) {
             $memes = $res["data"]["memes"];
@@ -50,14 +52,15 @@ class MemeApi {
                 }
             }
             $str = implode("\n", $result);
-            $str = "*Mögliche Memes*:\n" . $str;
+            $str = "*" .$t->g("possible_memes") . "*:\n" . $str;
             return $str;
         } else {
-            return "Leider nix :(";
+            return $t->g("notfound");
         }
     }
     
     public function searchMemes($search) {
+        global $t;
         $res = json_decode(file_get_contents($this->list_url), true);
         if ($res["success"]) {
             $memes = $res["data"]["memes"];
@@ -77,10 +80,10 @@ class MemeApi {
                 }
             }
             $str = implode("\n", $result);
-            $str = "*Gefundene Memes*:\n" . $str;
+            $str = "*" .$t->g("found") . "*:\n" . $str;
             return $str;
         } else {
-            return "Leider nix :(";
+            return $t->g("notfound");
         }
     }
     

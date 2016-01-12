@@ -2,6 +2,8 @@
 class Help {
     public function execute($data, $message) {
         global $pluginManager;
+        global $t;
+        $t->setPlugin("help");
 
         $cmd = implode("_", $data);
         $data = explode("_", $cmd);
@@ -18,18 +20,18 @@ class Help {
                 $helps[] = $text . " - /help\\_".$text;
             }
             $res = $helps;
-            array_unshift($res, "*Available Plugins*");
+            array_unshift($res, "*" . $t->g("available") . "*");
         } else {
             $plugin = $pluginManager->getPlugin($help);
             $res = $pluginManager->getHelp($plugin);
             if (sizeof($res) == 0) {
-                $res = array("*Plugin " . $help . " not found*");
+                $res = array("*" . sprintf($t->g("notfound"), $help) . "*");
             } else {
                 $helps = array();
                 foreach ($res as $text) {
                     $helps[] = str_replace("_", "\\_", $text);
                 }
-                array_unshift($helps, "*Help for ".$help." (Plugin: " . $plugin . ")*");
+                array_unshift($helps, "*" . sprintf($t->g("helpheader"), $help, $plugin) . "*");
                 $res = $helps;
             }
         }

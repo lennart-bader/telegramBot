@@ -1,0 +1,32 @@
+{
+    "help": {
+        "en": [
+           "Use /m, /meme or /memes",
+            "/m_list_X - list X possible Meme names (default X = 100)",
+            "/m_search Y - search for a meme with name Y",
+            "/m `NAME` - Receive the first Meme which name matches `NAME`",
+            "/m `NAME ; TOP` - As `/m NAME` but with text `TOP` written on the top of the Meme",
+            "/m `NAME ; TOP ; BOT` - As `/m NAME ; TOP` but with text `BOT``` written on the bottom of the Meme"
+        ],
+        "de": [
+            "Nutze /m, /meme oder /memes",
+            "/m_list_X - listet X mögliche Memes auf (Standard: X = 100)",
+            "/m_search_Y - Sucht nach Memes mit Namen Y",
+            "/m `NAME` - Erhalte erstes Meme, welches `NAME` entspricht",
+            "/m `NAME ; TOP` - Wie `/m NAME` aber mit Text `TOP` auf der Oberseite des Memes",
+            "/m `NAME ; TOP ; BOT` - Wie `/m NAME ; TOP` aber mit Text `BOT` auf der Unterseite des Memes."
+        ]
+    },
+    "possible_memes": {
+        "en": "Possible Memes",
+        "de": "Mögliche Memes"
+    },
+    "notfound": {
+        "en": "Nothing found",
+        "de": "Nichts gefunden"
+    },
+    "found": {
+        "en": "Found Memes",
+        "de": "Gefundene Memes"
+    }
+}

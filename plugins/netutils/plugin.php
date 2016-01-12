@@ -2,6 +2,8 @@
 class Netutils {
     public function execute($data, $message) {
         global $pluginManager;
+        global $t;
+        $t->setPlugin("netutils");
         $reply = "";
         
         $shell = new Shell();
@@ -28,7 +30,7 @@ class Netutils {
                 $cmd = "whois " . implode(" ", $data);
                 break;
             default:
-                $reply = "Netutils Plugin.\n Try /help\_netutils for all commands";
+                $reply = $t->g("default");
                 $execute = false;
                 break;
         }
@@ -38,10 +40,9 @@ class Netutils {
             if ($shell->execute()) {
                 $reply = "`$ ". api::encodePlain($cmd) . "\n" . api::encodePlain(implode("\n", $shell->getOutput())) . "`";
             } else {
-                $reply = "Command `" . api::encodePlain($cmd) . "` could not be executed";
+                $reply = sprintf($t->g("command_error"), api::encodePlain($cmd));
             }
         }
-        file_put_contents("log/netutils.log", $reply);
         // Api::reply($message, $reply, true);
         global $api;
         global $chatid;

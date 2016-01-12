@@ -8,6 +8,8 @@
     
         public function execute($data, $message) {
 			$markdown = true;
+            global $t;
+            $t->setPlugin("wikipedia");
 			
             $cmd = strtolower($data[0]);
 			
@@ -23,9 +25,7 @@
 						unset($data[0]);
 						$title = implode(" ", $data);
 					} else {
-						$help = array();
-                        $help[] = "*Wikipedia Plugin*";
-                        $help[] = "Try /help\\_wikipedia for help";
+						$help = $t->g("default");
 						$help = implode("\n", $help);
 					
 						Api::reply($message, $help, true);
@@ -33,7 +33,7 @@
 					}
             
 					$wp = new WikipediaParser();
-					$text = $wp->search($title);
+					$text = $wp->search($title, strtolower(LANGUAGE));
 					$markdown = false;
 					break;
 					

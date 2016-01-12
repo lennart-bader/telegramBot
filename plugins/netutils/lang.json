@@ -1,0 +1,26 @@
+{
+    "help": {
+        "en": [
+            "/nslookup `DOMAIN` - looks up the IP for the given domain",
+            "/nslookup `IP` - looks up reverse DNS for given IP",
+            "/dig `PARAMS` - uses the dig command from unix",
+            "/nmap `PARAMS` - use the nmap command from unix",
+            "/whois `PARAMS` - use the whois command from unix"
+        ],
+        "de": [
+            "/nslookup `DOMAIN` - sucht die IP zur gegebenen Domain",
+            "/nslookup `IP` - reverse DNS zur gegebenen IP",
+            "/dig `PARAMS` - Nutzt den `dig`-Befehl von UNIX",
+            "/nmap `PARAMS` - Nutzt den `nmap`-Befehl von UNIX",
+            "/whois `PARAMS` - Nutzt den `whois`-Befehl von UNIX"
+        ]
+    },
+    "command_error": {
+        "en": "Command `%s` could not be executed",
+        "de": "Befehl `%s` konnte nicht ausgeführt werden"
+    },
+    "default": {
+        "en": "Netutils Plugin.\n Try /help\\_netutils for all commands",
+        "de": "Netutils Plugin.\n Nutze /help\\_netutils für alle Befehle"
+    }
+}

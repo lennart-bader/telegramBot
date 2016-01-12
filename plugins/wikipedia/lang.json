@@ -1,0 +1,36 @@
+{
+    "help": {
+        "en": [
+            "/wiki `SEARCH` - Searchs for articles related to `SEARCH` in wikipedia with clickable detail commands",
+            "/wikip_ID - Gives you an extract from the article with ID `ID`"
+        ],
+        "de": [
+            "/wiki `SEARCH` - Sucht nach einem Artikel über `SEARCH` in Wikipedia mit anklickbaren Ergebnissen",
+            "/wikip_ID - Gibt einen Auszug aus dem Artikel mit ID `ID`"
+        ]
+    },
+    "default": {
+        "en": [
+            "*Wikipedia Plugin*",
+            "Try /help\\_wikipedia for help"
+        ],
+        "de": [
+            "*Wikipedia Plugin*",
+            "Nutze /help\\_wikipedia für Hilfe"
+        ]
+    },
+    "404": {
+        "en": "No results found",
+        "de": "Keine Ergebnisse gefunden"
+    },
+    "results": {
+        "en": "Search results:",
+        "de": "Suchergebnisse:"
+    },
+    "full_article": {
+        "en": "Complete article",
+        "de": "Vollständiger Artikel"
+    }
+
+
+}

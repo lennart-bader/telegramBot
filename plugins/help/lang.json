@@ -1,0 +1,22 @@
+{
+    "help0": {
+        "en": "/help `plugin` - Displays the help page",
+        "de": "/help - Zeigt die Hilfe an"
+    },
+    "help1": {
+        "en": "/help `plugin` - Displays the help page for a specific plugin",
+        "de": "/help `plugin` - Zeigt Hilfe eines bestimmten Plugins an"
+    },
+    "available": {
+        "en": "Available Plugins",
+        "de": "Verfügbare Plugins"
+    },
+    "notfound": {
+        "en": "Plugin %s not found",
+        "de": "Plugin %s nicht gefunden."
+    },
+    "helpheader": {
+        "en": "Help for %s (Plugin: %s)",
+        "de": "Hilfe für %s (Plugin: %s)"
+    }
+}

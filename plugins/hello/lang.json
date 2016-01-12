@@ -1,0 +1,114 @@
+{
+    "help": {
+        "en": "Just a hello plugin. No need for help.",
+        "de": "Das Hallo-Plugin - dafür gibt's keine Hilfe."
+    },
+    "keywords": {
+        "en": [
+            "hello",
+            "good morning",
+            "good day",
+            "good evening",
+            "good night",
+            "g'day",
+            "hi",
+            "hi",
+            "hello",
+            "good evening",
+            "heyho",
+            "heyho"
+        ],
+        "de": [
+            "hallo",
+            "guten morgen",
+            "guten tag",
+            "guten abend",
+            "gute nacht",
+            "moin",
+            "salve",
+            "hi",
+            "huhu",
+            "nabend",
+            "grützi",
+            "hallihallo"
+        ]
+    },
+    "no_night_time": {
+        "en": [
+            "What an unusual time %s, isn't it?",
+            "Interesting sleep pattern my friend...",
+            "Really?!"
+        ],
+        "de": [
+            "Das sind aber ungewöhnliche Zeiten, %s!",
+            "Einen interessanten Schlafrhythmus hast du da, %s...",
+            "Wirklich?!"
+        ]
+    },
+    "nighthawk": {
+        "en": [
+            "It's quite late, isn't it?",
+            "You're such a nighthawk, %s..."
+        ],
+        "de": [
+            "So spät noch wach, %s?!",
+            "Du bist aber eine Nachteule..."
+        ]
+    },
+    "early_bird": {
+        "en": [
+            "Wow, you're awake very early, %s...",
+            "The early bird catches the worm."
+        ],
+        "de": [
+            "Du bist aber früh auf, %s...",
+            "Der frühe Vogel fängt den Wurm, was %s? ;)"
+        ]
+    },
+    "good_morning": {
+        "en": [
+            "Good Morning %s!",
+            "I hope you have a wonderful morning :)"
+        ],
+        "de": [
+            "Guten Morgen %s!",
+            "Einen wunderschönen guten Morgen wünsche ich :)"
+        ]
+    },
+    "hello": {
+        "en": [
+            "Hello %s",
+            "Heyho!",
+            "Good day %s!",
+            "Hi!"
+        ],
+        "de": [
+            "Hallo %s!",
+            "Halli Hallo Hallöle",
+            "Guten Tag %s!",
+            "Hi!"
+        ]
+    },
+    "good_evening": {
+        "en": [
+            "Good evening %s.",
+            "Good evening my friend."
+        ],
+        "de": [
+            "Guten Abend %s.",
+            "Guten Abend mein Freund"
+        ]
+    },
+    "good_night": {
+        "en": [
+            "Good night, %s.",
+            "Sleep very well!",
+            "Sweet dreams :)"
+        ],
+        "de": [
+            "Gute Nacht %s!",
+            "Schlaf schön, %s",
+            "Süße Träume"
+        ]
+    }
+}

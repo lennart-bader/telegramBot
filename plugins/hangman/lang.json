@@ -1,0 +1,74 @@
+{
+    "help": {
+        "en": [
+            "/hangman_start - Starts a new hangman game",
+            "/hangman_pause - pauses the current game. Can be continued by /hangman_start",
+            "/hangman_solve - shows the solution for the current game (and ends the game)",
+            "/hangman_stop  - ends the current game",
+            "While in game just type single letters to play"
+        ],
+        "de": [
+            "/hangman_start - Startet ein neues Spiel",
+            "/hangman_pause - Pausiert das aktuelle Spiel. Kann mit /hangman_start weitergespielt werden.",
+            "/hangman_solve - Zeigt die Lösung an und beendet das Spiel",
+            "/hangman_stop  - Bricht das aktuelle Spiel ab",
+            "Während des Spiels einfach einzelne Buchstaben senden"
+        ]
+    },
+    "you_won": {
+        "en": "\nYou won!",
+        "de": "\nDu hast gewonnen!"
+    },
+    "you_lost": {
+        "en": "\nYou are dead :(\nSolution is: %s",
+        "de": "\nDu wurdest gehangen :(\nDie Lösung ist: %s"
+    },
+    "error_creating": {
+        "en": "Error while creating game",
+        "de": "Das Spiel konnte nicht gestartet werden"
+    },
+    "started": {
+        "en": "Game started! \n\n",
+        "de": "Spiel gestartet! \n\n"
+    },
+    "continued": {
+        "en": "Game continued\n\n",
+        "de": "Spiel wird fortgesetzt\n\n"
+    },
+    "already_running": {
+        "en": "There is already a running game.\n\n",
+        "de": "Es läuft bereits ein Spiel.\n\n"
+    },
+    "cannot_pause": {
+        "en": "There is no game to pause",
+        "de": "Es gibt kein Spiel, das pausiert werden kann"
+    },
+    "cannot_solve": {
+        "en": "There is no game to solve",
+        "de": "Es gibt kein Spiel, das gelöst werden kann"
+    },
+    "cannot_stop": {
+        "en": "There is no game to stop",
+        "de": "Es gibt kein Spiel, das gestoppt werden kann"
+    },
+    "paused": {
+        "en": "Game paused. Use /hangman\\_start to continue.",
+        "de": "Spiel pausiert. /hangman\\_start zum weiterspielen"
+    },
+    "solve": {
+        "en": "Solution is %s\n\n",
+        "de": "Die Lösung ist %s\n\n"
+    },
+    "stopped": {
+        "en": "Game stopped",
+        "de": "Spiel abgebrochen"
+    },
+    "error_stopping": {
+        "en": "Game could not be stopped",
+        "de": "Spiel konnte nicht abgebrochen werden"
+    },
+    "default": {
+        "en": "Hangman! Type /help\\_hangman for all commands",
+        "de": "Hangman! Nutze /help\\_hangman für alle Befehle"
+    }
+}

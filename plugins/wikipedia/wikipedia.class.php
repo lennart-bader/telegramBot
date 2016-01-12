@@ -1,11 +1,13 @@
 <?php
 class WikipediaParser {
 	
-	public function __construct(){
-		
+	public function __construct() {
+		global $t;
+		$t->setPlugin("wikipedia");
 	}
 
 	public function getByTitle($title, $lang = "de") {
+		global $t;
 		$article = json_decode(file_get_contents("https://" . $lang .  ".wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro=&explaintext=&titles=".urlencode($title)), true);
 		
 		file_put_contents("log/wiki.log", json_encode($article));
@@ -17,20 +19,21 @@ class WikipediaParser {
 		$extr = $res["extract"];
 		
 		if ($extr == "") {
-			return "Leider konnte ich dazu nichts finden :(";
+			return $t->g("404");
 		}
 		
 		$text = array();
 		$text[] = "*".$title."*";
 		$text[] = $extr;
 		$text[] = "";
-		$text[] = "*Vollständiger Artikel:*";
+		$text[] = "*" . $t->g("full_article") . ":*";
 		$text[] = "https://" . $lang . ".wikipedia.org/?curid=" . $res["pageid"];
 		
 		return implode("\n", $text);
 	}
 
 	public function search($search, $lang = "de") {
+		global $t;
 		$url = "https://".$lang.".wikipedia.org/w/api.php?action=query&format=json&generator=search&gsrsearch=" . urlencode($search);
 		
 		$res = json_decode(file_get_contents($url), true);
@@ -39,7 +42,7 @@ class WikipediaParser {
 		
 		if (is_array($results)) {
 			$text = array();
-			$text[] = "Ich hab da was gefunden:";
+			$text[] = "*" . $t->g("results") ."*";
 			$pages = $results["pages"];
 			foreach ($pages as $page) {
 				$title = $page["title"];
@@ -49,13 +52,14 @@ class WikipediaParser {
 				$text[] = "/wikip_" . $id;
 			}
 		} else {
-			return "Leider konnte ich dazu nichts finden :( ";
+			return $t->g("404");
 		}
 		
 		return implode("\n", $text);
 	}
 	
 	public function page($pid, $lang = "de") {
+		global $t;
 		$url = "https://" . $lang .  ".wikipedia.org/w/api.php?format=json&".
 				"action=query&prop=extracts&exintro=&explaintext=&pageids=" . urlencode($pid);
 		$res = json_decode(file_get_contents($url), true);
@@ -69,11 +73,11 @@ class WikipediaParser {
 			$text[] = "*".$title."*";
 			$text[] = $extr;
 			$text[] = "";
-			$text[] = "*Vollständiger Artikel:*";
+			$text[] = "*" . $t->g("full_article") . ":*";
 			$text[] = "https://" . $lang . ".wikipedia.org/?curid=" . $pid;
 			return implode("\n", $text);
 		} else {
-			return "Die Seite gibts wohl nicht :(";
+			return $t->g("404");
 		}
 	}
 }

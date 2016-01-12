@@ -35,31 +35,36 @@ class WeatherParser extends OpenWeather{
 	}
 	
     public function getWeather($forecast = false) {
+    	global $t;
+    	$t->setPlugin("weather");
+    	
         if ($this->currentWeather != FALSE) {
             $r = array();
             
             file_put_contents("log/parser.log", json_encode($this->currentWeather));
             
-            $r[] = "*Das Wetter für " . $this->getLocation() . "*:";
-            $r[] = "Derzeit " . $this->currentWeather["weather"][0]["description"] . " bei " . $this->currentWeather["main"]["temp"] . "°C";
-            $r[] = "Windstärke " . $this->currentWeather["wind"]["speed"];
+            $r[] = "*" .sprintf($t->g("current_weather"), $this->getLocation()) . "*:";
+            $r[] = sprintf($t->g("current_weather_l1"), 
+            	$this->currentWeather["weather"][0]["description"],
+            	$this->currentWeather["main"]["temp"]);
+            $r[] = sprintf($t->g("windspeed"), $this->currentWeather["wind"]["speed"]);
 			// $r[] = "http://openweathermap.org/img/w/" . $this->currentWeather["weather"][0]["icon"] . ".png";
 			
 			if ($forecast) {
 				$r[] = "";
-				$r[] = "*Die weiteren Aussichten:*";
+				$r[] = "*" .$t->g("forecast") . ":*";
 				$list= $this->futureWeather["list"];
 				
 				foreach ($list as $entry) {
 					$r[] = "*" . $this->formatDate($entry["dt"])."*:";
-					$r[] = "  " . $entry["weather"][0]["description"] . " bei " . $entry["main"]["temp"] . "°C";
+					$r[] = "  " . $entry["weather"][0]["description"] . ", " . $entry["main"]["temp"] . "°C";
 				}
 				
 			}		
             
             return implode("\n", $r);
         } else {
-            return "Den Ort kenne ich leider nicht :(";
+            return $t->g("invalid_location");
         }
     }
      

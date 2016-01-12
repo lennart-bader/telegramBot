@@ -1,11 +1,11 @@
 <?php
+    global $t;
+    $t->setPlugin("wikipedia");
+
     $aliases = array("wiki" => "wikipedia", "info" => "wikipedia", "wikip" => "wikipedia", "wikipedia" => "wikipedia");
     global $pluginManager;
     $pluginManager->registerAliases($aliases);
 
-    $helps = array(
-        "/wiki `SEARCH` - Searchs for articles related to `SEARCH` in wikipedia with clickable detail commands",
-        "/wikip_ID - Gives you an extract from the article with ID `ID`"
-    );
+    $helps = $t->g("help");
     $pluginManager->addHelp("wikipedia", $helps);
 ?>

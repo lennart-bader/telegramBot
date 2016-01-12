@@ -1,10 +1,13 @@
 <?php
+    global $t;
+    $t->setPlugin("hello");
+
     $aliases = array("hello" => "hello");
     global $pluginManager;
     $pluginManager->registerAliases($aliases);
     $pluginManager->registerReceiver("hello");
     $helps = array(
-        "Just a greeting Plugin - no commands necessary"
+        $t->g("help")
     );
     $pluginManager->addHelp("hello", $helps);
 ?>

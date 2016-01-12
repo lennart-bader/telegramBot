@@ -1,0 +1,34 @@
+{
+    "help": {
+        "en": [
+            "Use /weather, /wetter and /weatherf, /wettera",
+            "/weather `LOCATION` - Gives you the current weather for the specified location",
+            "/weatherf `LOCATION` - Gives you the weather forecast for the specified location"
+        ],
+        "de": [
+            "Nutze /weather, /wetter und /weatherf, /wettera",
+            "/weather `LOCATION` - Gibt das aktuelle Wetter für den angegebenen Ort zurück",
+            "/weatherf `LOCATION` - Gibt die Wetteraussichten für den angegebenen Ort zurück"
+        ]
+    },
+    "current_weather": {
+        "en": "The current weather for %s",
+        "de": "Das aktuelle Wetter für %s"
+    },
+    "current_weather_l1": {
+        "en": "Currently %s and %s degree",
+        "de": "Derzeit %s bei %s°C"
+    },
+    "windspeed": {
+        "en": "Wind: %s",
+        "de": "Windstärke %s"
+    },
+    "forecast": {
+        "en": "Forecast",
+        "de": "Die weiteren Aussichten"
+    },
+    "invalid_location": {
+        "en": "Invalid location",
+        "de": "Ungültiger Ort"
+    }
+}

@@ -1,6 +1,7 @@
 secret.php
 
 /log/
+/cron/
 
 /plugins/youtube/downloads/
 

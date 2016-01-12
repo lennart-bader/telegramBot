@@ -3,10 +3,13 @@
     
     global $pluginManager;
     global $message;
+    global $msg;
     global $api;
     global $chatid;
     global $sender;
     global $db;
+    global $t;
+    $t = new Translator();
 
     $db = new MySql();
 
@@ -24,6 +27,7 @@
         $chatid = Api::getChat($message);
         
         $sender = $message["message"]["from"];
+
         $text = $message["message"]["text"];    
     
         $isCmd = false;

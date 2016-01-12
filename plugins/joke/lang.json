@@ -1,0 +1,12 @@
+{
+    "help": {
+        "en": [
+            "Use /joke or /witz",
+            "/joke - Sends you a random joke (german) found on the internet"
+        ],
+        "de": [
+            "Nutze /joke oder /witz",
+            "/joke - Sendet einen deutschen Zufallswitz"
+        ]
+    }    
+}

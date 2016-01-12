@@ -6,14 +6,15 @@ class Hello {
 
     public function receive($data, $message) {
         $this->greetings($data, $message);
-        $this->lennartHatRecht($data, $message);
     }
 
     private function greetings($data, $message) {
+        global $t;
+        $t->setPlugin("hello");
+
         $text = implode(" ", $data);
-        $keywords = array(
-            "hallo", "guten morgen", "guten tag", "guten abend", "gute nacht", "moin", "salve", "hi", "huhu", "nabend", "grützi"
-            );
+        // Load keywords from language file
+        $keywords = $t->g("keywords");
 
         global $api;
         global $chatid;
@@ -32,51 +33,43 @@ class Hello {
 
             if (sizeof($matches[0]) > 0 && is_array($matches[0][0]) && sizeof($matches[0][0]) > 0) {
                 switch ($keyword) {
-                    case "moin":
-                        $api->sendMessage($chatid, "Moin! :)");
+                    // Moin / Hi
+                    case $keywords[5]:
+                        $api->sendMessage($chatid, ucwords($keywords[5]) . " :)");
                         break;
-                    case "gute nacht":
+                    // Good night
+                    case $keywords[4]:
                         $h = date("H");
                         if ($h >= 21 && $h < 7) {
-                            
+                            $texts = $t->g("good_night");
+                            $num = mt_rand(0, sizeof($texts) - 1);
+                            $api->sendMessage($chatid, sprintf($texts[$num], $name));
+                        } else {
+                            $texts = $t->g("no_night_time");
+                            $num = mt_rand(0, sizeof($texts) - 1);
+                            $api->sendMessage($chatid, sprintf($texts[$num], $name));
                         }
                         break;
                     default:
                         $h = date("H");
                         if ($h <= 4) {
-                            $msg = "So spät noch wach, " . $name . "?";
+                            $texts = $t->g("nighthawk");
                         } elseif ($h <= 5) {
-                            $msg = "Du bist aber früh auf, " . $name . "...";
+                            $texts = $t->g("early_bird");
                         } elseif ($h <= 11) {
-                            $msg = "Guten Morgen, " . $name . "!";
+                            $texts = $t->g("good_morning");
                         } elseif ($h <= 18) {
-                            $msg = "Hallo " . $name . "!";
+                            $texts = $t->g("hello");
                         } elseif ($h <= 23) {
-                            $msg = "Guten Abend " . $name . "!";
+                            $texts = $t->g("good_night");
                         }
+                        $num = mt_rand(0, sizeof($texts) - 1);
+                        $msg = sprintf($texts[$num], $name);
                         $api->sendMessage($chatid, $msg);
                         break;
                 }
                 break;
             }            
-        }
-    }
-
-    private function lennartHatRecht($data, $message) {
-        $text = strtolower(implode(" ", $data));
-        global $api;
-        global $chatid;
-        if (strpos("jarvis sag doch auch mal was", $text) === 0) {
-            if ($message["message"]["from"]["username"] == "kryptur") {
-                $array = array("Lennart hat Recht!", "Ich sehe das wie Lennart.", "Ich stimme dir voll zu", "Sehe ich auch so");
-                $msg = $array[array_rand($array)];
-                $api->sendMessage($chatid, $msg);                
-            } else {
-                $array = array("Frag doch mal Lennart, der hat bestimmt Recht!", "Was soll ich da sagen?", 
-                    "Hmmmmm");
-                $msg = $array[array_rand($array)];
-                $api->sendMessage($chatid, $msg); 
-            }
         }
     }
 }

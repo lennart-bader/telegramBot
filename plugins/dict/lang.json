@@ -1,0 +1,10 @@
+{
+    "help0": {
+        "en": "/dict_FROM_TO `WORD` - Translate WORD between two languages", 
+        "de": "/dict_VON_NACH `WORT` - Übersetze das Wort `WORT` zwischen zwei Sprachen"
+    },
+    "no_trans": {
+        "en": "No translation found",
+        "de": "Keine Übersetzung gefunden."
+    }
+}

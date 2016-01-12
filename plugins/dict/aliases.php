@@ -1,9 +1,12 @@
 <?php
+    global $t;
+    $t->setPlugin("dict");
+
     $aliases = array(
         "dict" => "dict", 
     );
     $helps = array(
-        "/dict_FROM_TO `WORD` - Translate WORD between two languages"
+        $t->g(0)
     );
     global $pluginManager;
     $pluginManager->registerAliases($aliases);

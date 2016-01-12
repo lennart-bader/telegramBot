@@ -5,6 +5,8 @@ class Dict {
         global $api;
         global $chatid;
         global $sender;
+        global $t;
+        $t->setPlugin("dict");
 
         $cmd = explode("_", $data[0]);
         array_shift($data);
@@ -14,7 +16,7 @@ class Dict {
 
         $res = $this->getTranslation($from, $to, $search);
         if ($res == false) {
-            $reply = "No translation found :(";
+            $reply = $t->g("no_trans");
         } else {
             $reply = $res;
         }
