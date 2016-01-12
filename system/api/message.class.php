@@ -31,7 +31,9 @@ class Message {
     public $migrate_from_chat_id;
     
     public $type;
+    public $is_command = false;
     private $data;
+    public $exploded;
 
     public function __construct($b = false) {
         if ($b != false) {
@@ -45,12 +47,21 @@ class Message {
         $this->id = $b["message_id"];
         $this->from = Api::set($b, "from", "User");
         $this->date = $b["date"];
-        $this->$chat = new Chat($b["chat"]);
+        $this->chat = new Chat($b["chat"]);
         $this->forward_from = Api::set($b, "forward_from", "User");
         $this->forward_date = isset($b["forward_date"]) ? $b["forward_date"] : -1;
         $this->reply_to_message = Api::set($b, "reply_to_message", "Message");
 
-        $this->type = $this->getType();
+        $this->getType();
+        if ($this->type == "text") {
+            $this->exploded = explode(" ", $this->text);
+        }
+
+
+        if ($this->type == "text" && strpos($this->text, "/") === 0) {
+            $this->is_command = true;
+            $this->text = str_replace("@" . BOT_OFFICIAL_NAME, "", $this->text);
+        }
     }
 
     private function getType() {
@@ -133,6 +144,27 @@ class Message {
         }
         if (isset($b["caption"])) {
             $this->caption = $b["caption"];
+        }
+    }
+
+    public function getCommand() {
+        if ($this->is_command) {
+            $cmd = explode(" ", $this->text);
+            $cmd = $cmd[0];
+            $cmd = substr($cmd, 1);
+            return $cmd;
+        } else {
+            return false;
+        }
+    }
+
+    public function getData() {
+        if ($this->type == "text") {
+            $data = explode(" ", $this->text);
+            array_shift($data);
+            return $data;
+        } else {
+            return array();
         }
     }
 }
