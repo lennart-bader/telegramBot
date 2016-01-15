@@ -34,7 +34,7 @@ class Hello {
                     // Good night
                     case $keywords[4]:
                         $h = date("H");
-                        if ($h >= 21 && $h < 7) {
+                        if ($h >= 21 || $h < 7) {
                             $texts = $t->g("good_night");
                             $num = mt_rand(0, sizeof($texts) - 1);
                             $api->sendMessage($message->chat->id, sprintf($texts[$num], $name));
