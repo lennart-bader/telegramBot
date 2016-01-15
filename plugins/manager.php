@@ -32,7 +32,18 @@ class PluginManager {
         $this->helps[$plugin] = $helps;
     }
 
-    public function getPlugin($cmd) {
+    public function getPlugin($plugin) {
+        $cmd = explode("_", $plugin);
+        $cmd = $cmd[0];
+
+        if (isset($this->aliases[$cmd])) {
+            return $this->aliases[$cmd];
+        } else {
+            return $cmd;
+        }
+    }
+
+    public function resolveAlias($cmd) {
         $cmd = explode("_", $cmd);
         $cmd = $cmd[0];
         if (isset($this->aliases[$cmd])) {
@@ -94,7 +105,7 @@ class PluginManager {
         if (isset($this->helps[$plugin]) && is_array($this->helps[$plugin])) {
             return $this->helps[$plugin];
         } else {
-            return array();
+            return array("No help specified");
         }
     }
 }
