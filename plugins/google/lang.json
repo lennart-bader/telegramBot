@@ -1,0 +1,12 @@
+{
+    "help": {
+        "en": [
+            "/g `QUERY` - Search Google and Display results",
+            "/img `QUERY` - Search Google for an Image a random image from the results"
+        ],
+        "de": [
+            "/g `SUCHE` - Google-Suche mit Ergebnisanzeige",
+            "/img `SUCHE` - Suche nach Google-Bildern und zeige ein zufälliges Ergebnis an."
+        ]
+    }
+}
