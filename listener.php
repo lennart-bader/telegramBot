@@ -36,8 +36,7 @@
                 if (!$cmd) {
                     exit;
                 }
-                $cmd = $pluginManager->getPlugin($cmd);
-                
+                $cmd = $pluginManager->resolveAlias($cmd);
                 $class = new $cmd;
                 $class->execute($message);
             }
