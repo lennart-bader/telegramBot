@@ -1,0 +1,3 @@
+[submodule "plugins/imdb/api"]
+	path = plugins/imdb/api
+	url = https://github.com/pixelead0/tmdb_v3-PHP-API-.git

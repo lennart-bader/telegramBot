@@ -1,0 +1,117 @@
+{
+    "help": {
+        "en": [
+            "IMDB Plugin",
+            "Lets you search for Movies and Series and create your personal watchlist",
+            "/imdb   `SEARCH` - Search for Movies, Series and Actors by Title",
+            "/imdb_m `SEARCH` - Search for Movies by Title",
+            "/imdb_s `SEARCH` - Search for Series by Title",
+            "/imdb_p `SEARCH` - Search for Persons by Name",
+            "/imdb_dm_id - See details for the specified Movie",
+            "/imdb_ds_id - See details for the specified Series",
+            "/imdb_dp_id - See details for the specified Person",
+            "/imdb_season_shid_snum - See details for the specified Season",
+            "/imdb_episode_shid_snum_enum - See details for the specified Episode",
+            "",
+            "*Watchlist* (niy)",
+            "/imdb_list - Display your watchlist",
+            "/imdb_add_id - Add entry to your watchlist",
+            "/imdb_rm_id - Remove from your watchlist",
+            "/imdb_later_id - Move this to the watch-later section of your watchlist",
+            "/imdb_watched_id - Mark this as watched"
+        ],
+        "de": [
+            "IMDB Plugin",
+            "Suche nach Filmen, Serien und Dokumentation sowie Verwaltung einer persönlichen Watchlist",
+            "/imdb   `SUCHE` - Suche nach Serien, Filmen und Personen",
+            "/imdb_m `SUCHE` - Suche nach Filmtiteln",
+            "/imdb_s `SUCHE` - Suche nach Seriennamen",
+            "/imdb_p `SUCHE` - Suche nach Personennamen",
+            "/imdb_dm_id - Details zum entsprechenden Film",
+            "/imdb_ds_id - Details zur entsprechenden Serie",
+            "/imdb_dp_id - Details zur entsprechenden Person",
+            "/imdb_season_shid_snum - Details zur entsprechenden Staffel",
+            "/imdb_season_shid_snum_enum - Details zur entsprechenden Episode",
+            "",
+            "*Watchlist* (niy)",
+            "/imdb_list - Zeige persönliche Watchlist an",
+            "/imdb_add_id - Füge Film zur Watchlist hinzu",
+            "/imdb_rm_id - Entferne Film von der Watchlist",
+            "/imdb_later_id - Markiere den Film zum später ansehen",
+            "/imdb_watched_id - Markiere Film als gesehen"
+        ]
+    },
+    "default": {
+        "en": "IMDB Plugin. See /help\\_imdb for more information.",
+        "de": "IMDB Plugin. Nutze /help\\_imdb für weitere Informationen"
+    },
+    "notfound": {
+        "en": "No results.",
+        "de": "Keine Ergebnisse"
+    },
+    "actors": {
+        "en": "*Actors*: %s",
+        "de": "*Schauspieler*: %s"
+    },
+    "result": {
+        "en": "%s",
+        "de": "%s"
+    },
+    "movie": {
+        "en": "Movie",
+        "de": "Film"
+    },
+    "tvshow": {
+        "en": "TV Show",
+        "de": "Serie"
+    },
+    "person": {
+        "en": "Person",
+        "de": "Person"
+    },
+    "birthday": {
+        "en": "Birthday",
+        "de": "Geburtstag"
+    },
+    "tvroles": {
+        "en": "TV-Show Roles",
+        "de": "Serien-Rollen"
+    },
+    "movieroles": {
+        "en": "Movie Roles",
+        "de": "Film-Rollen"
+    },
+    "numseasons": {
+        "en": "*Seasons*: %s",
+        "de": "*Staffeln*: %s"
+    },
+    "season": {
+        "en": "Season",
+        "de": "Staffel"
+    },
+    "numepisodes": {
+        "en": "Number of Episodes",
+        "de": "Episodenanzahl"
+    },
+    "airdate": {
+        "en": "Air Date",
+        "de": "Erstausstrahlung"
+    },
+    "episodes": {
+        "en": "Episodes",
+        "de": "Episoden"
+    },
+    "episode": {
+        "en": "Episode",
+        "de": "Episode"
+    },
+    "back2series": {
+        "en": "Back to the Series",
+        "de": "Zurück zur Serie"
+    }, 
+    "back2season": {
+        "en": "Back to the Season",
+        "de": "Zurück zur Staffel"
+    }
+
+}
