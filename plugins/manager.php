@@ -37,7 +37,7 @@ class PluginManager {
         $cmd = $cmd[0];
 
         if (isset($this->aliases[$cmd])) {
-            return $this->aliases[$cmd];
+            return $this->aliases[$cmd]["to"];
         } else {
             return $cmd;
         }

@@ -32,6 +32,7 @@ class Translator {
             $this->data = $this->load($file);
             $this->available = true;
         } else {
+            error_log($plugin . "-help not available");
             $this->available = false;
         }
     }

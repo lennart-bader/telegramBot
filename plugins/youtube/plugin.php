@@ -1,14 +1,40 @@
 <?php
 class Youtube {
     public function execute($message) {
-        // This does nothing for now
-        switch ($message->getCommand()) {
-        case "dlv":
-            global $api;
-            global $chatid;
-            $api->sendVideo($message->chat->id, $data[0]);
-            break;
+        global $api;
+		global $t;
+		$t->setPlugin("youtube");
+        switch (strtolower($message->getCommand())) {
+			case "dlv":
+				$api->sendVideo($message->chat->id, $data[0]);
+				break;
+			case "vid2mp3":
+				$url = $message->getData();
+				$url = $url[0];
+				if (filter_var($url, FILTER_VALIDATE_URL)) {
+					$url = $this->expand_url($url);
+					if (strpos($url, "youtube") !== false) {							
+						$file = $this->download($url, $message);
+						$data = file_get_contents($file);
+						$tmpname = "plugins/youtube/downloads/" . str_replace(" ", "_", microtime());
+						file_put_contents($tmpname, $data);
+						
+						$batch = "avconv -i " . $tmpname 
+						." -threads auto -vn -c:a libmp3lame -qscale:a 3 " . $tmpname .".mp3";
+						exec($batch);
+						
+						$audio = file_get_contents($tmpname . ".mp3");
+						exec("rm " .$tmpname);
+						$api->sendAudio($message->chat->id, $tmpname.".mp3");
+						exec("rm " .$tmpname.".mp3");
+						exit;
+					}
+				}
+				$api->sendMessage($message->chat->id, $t->g("invalid_url"));
+				
+				break;
         }
+		
     }
 
     public function receive($message) {
@@ -17,8 +43,6 @@ class Youtube {
         if (filter_var($text, FILTER_VALIDATE_URL)) {
             // Expand shortened URLs
             $url = $this->expand_url($text);
-
-
             if (strpos($url, "youtube") !== false) {
                 $file = $this->download($url, $message);
                 if ($file != false) {                    
@@ -34,6 +58,11 @@ class Youtube {
        	    }
         }
     }
+
+    private function validateYoutube($url) {
+        
+    }
+
 
     private function download($url, $message) {
         $id = $this->urlToId($url);

@@ -3,12 +3,14 @@
         "en": [
             "Send a youtube URL (may be shortened) - receive the downloaded video (up to 50MB)",
             "Send a URL that ends with `.mp4` to receive that file",
-            "Use /dlv `URL` to download a video from the given URL"
+            "Use /dlv `URL` to download a video from the given URL",
+            "/vid2mp3 - Sends you the tone from a youtube Video"
         ],
         "de": [
             "Sende eine Youtube URL (darf gekürtzt sein) - Erhalte das Video als Datei (bis 50MB)",
             "Sende einen Link, der mit `.mp4` aufhört, um das Video zu erhalten",
-            "Nutze /dlv `URL`, um ein Video von der angegebenen URL herunterzuladen"
+            "Nutze /dlv `URL`, um ein Video von der angegebenen URL herunterzuladen",
+            "/vid2mp3 - Extrahiert die Musik aus einem Youtube-Video"
         ]
     }
 }

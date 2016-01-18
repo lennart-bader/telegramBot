@@ -6,6 +6,7 @@
     $pluginManager->registerAlias("youtube", "youtube", "text");
     $pluginManager->registerAlias("yt", "youtube", "text");
     $pluginManager->registerAlias("dlv", "youtube", "text");
+    $pluginManager->registerAlias("vid2mp3", "youtube", "text");
     $pluginManager->registerReceiver("youtube", "text");
     $helps = $t->g("help");
     $pluginManager->addHelp("youtube", $helps);
